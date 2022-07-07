@@ -1,0 +1,24 @@
+	Query for 5 movies with the highest rating.
+CREATE INDEX title_index ON shows (title);
+sqlite> SELECT title FROM shows WHERE id IN(SELECT show_id FROM ratings ORDER BY rating LIMIT 5);
+Fox Files
+Popcultured
+Chantelle: Living the Dream
+Girls Will Be Girls
+Weird Norwegian
+
+
+	Query for all genres of movies acted by Robert Downey Jr.
+sqlite> SELECT genre FROM people
+   ...>     JOIN stars ON people.id = stars.person_id
+   ...>     JOIN shows ON shows.id = stars.show_id
+   ...>     JOIN genres ON shows.id = genres.show_id
+   ...>     WHERE people.name LIKE "%Robert Downey%";
+Talk-Show
+Talk-Show
+Comedy
+Documentary
+News
+Talk-Show
+Documentary
+sqlite>
